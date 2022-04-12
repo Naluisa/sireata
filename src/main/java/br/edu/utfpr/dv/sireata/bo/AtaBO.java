@@ -185,15 +185,18 @@ public class AtaBO {
 				return this.listarPorCampus(idCampus);
 			}else{
 				return this.listarPublicadas();
-			}}
-			else if(idDepartamento > 0){
+			}
+		}else{
+			if(idOrgao >0 ){
+				return this.listarPorOrgao(idOrgao, idUsuario);
+			}else if(idDepartamento > 0){
 				return this.listarPorDepartamento(idDepartamento, idUsuario);
 			}else if(idCampus > 0){
 				return this.listarPorCampus(idCampus, idUsuario);
 			}else{
 				return this.listarNaoPublicadas(idUsuario);
 			}
-		
+		}
 	}
 	
 	public int salvar(Ata ata) throws Exception{

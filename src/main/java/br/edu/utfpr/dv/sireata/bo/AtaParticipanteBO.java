@@ -64,11 +64,14 @@ public class AtaParticipanteBO {
 	}
 	
 	public void excluir(AtaParticipante participante) throws Exception{
-
+		this.excluir(participante.getIdAtaParticipante());
+	}
+	
+	public void excluir(int id) throws Exception{
 		try{
 			AtaParticipanteDAO dao = new AtaParticipanteDAO();
 			
-			dao.excluir(participante.getIdAtaParticipante());
+			dao.excluir(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			

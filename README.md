@@ -1,9 +1,3 @@
-Resultado CLOC
-=======
-
-![image](https://user-images.githubusercontent.com/54780170/161442346-949c1ba3-14d6-4f2e-bd2e-d2defdf18443.png)
-
-
 sireata
 ==============
 
