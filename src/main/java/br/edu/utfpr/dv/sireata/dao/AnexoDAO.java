@@ -32,12 +32,7 @@ public class AnexoDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -61,12 +56,7 @@ public class AnexoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -106,12 +96,7 @@ public class AnexoDAO {
 			
 			return anexo.getIdAnexo();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -144,4 +129,16 @@ public class AnexoDAO {
 		return anexo;
 	}
 
+	private void closeConnection(ResultSet rs, Statement stmt, Connection conn){
+		try{
+			if((rs != null) && !rs.isClosed())
+			rs.close();
+			if((stmt != null) && !stmt.isClosed())
+				stmt.close();
+			if((conn != null) && !conn.isClosed())
+				conn.close();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
 }

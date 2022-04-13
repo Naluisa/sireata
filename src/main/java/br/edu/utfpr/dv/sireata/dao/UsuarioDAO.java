@@ -31,12 +31,7 @@ public class UsuarioDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -59,12 +54,7 @@ public class UsuarioDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -87,12 +77,7 @@ public class UsuarioDAO {
 				return "";
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -114,12 +99,7 @@ public class UsuarioDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -150,12 +130,7 @@ public class UsuarioDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -198,12 +173,7 @@ public class UsuarioDAO {
 			
 			return usuario.getIdUsuario();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -250,12 +220,7 @@ public class UsuarioDAO {
 				
 				return (String[])emails.toArray();
 			}finally{
-				if((rs != null) && !rs.isClosed())
-					rs.close();
-				if((stmt != null) && !stmt.isClosed())
-					stmt.close();
-				if((conn != null) && !conn.isClosed())
-					conn.close();
+				closeConnection(rs,stmt,conn);
 			}
 		}else
 			return null;
@@ -279,13 +244,19 @@ public class UsuarioDAO {
 				return false;
 			}
 		}finally{
+			closeConnection(rs,stmt,conn);
+		}
+	}
+	private void closeConnection(ResultSet rs, Statement stmt, Connection conn){
+		try{
 			if((rs != null) && !rs.isClosed())
-				rs.close();
+			rs.close();
 			if((stmt != null) && !stmt.isClosed())
 				stmt.close();
 			if((conn != null) && !conn.isClosed())
 				conn.close();
+		}catch(Exception e){
+			System.out.println(e);
 		}
 	}
-
 }

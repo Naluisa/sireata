@@ -32,12 +32,7 @@ public class ComentarioDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -60,12 +55,7 @@ public class ComentarioDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -90,12 +80,7 @@ public class ComentarioDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -137,12 +122,7 @@ public class ComentarioDAO {
 			
 			return comentario.getIdComentario();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeConnection(rs,stmt,conn);
 		}
 	}
 	
@@ -161,4 +141,16 @@ public class ComentarioDAO {
 		return comentario;
 	}
 
+	private void closeConnection(ResultSet rs, Statement stmt, Connection conn){
+		try{
+			if((rs != null) && !rs.isClosed())
+			rs.close();
+			if((stmt != null) && !stmt.isClosed())
+				stmt.close();
+			if((conn != null) && !conn.isClosed())
+				conn.close();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
 }
