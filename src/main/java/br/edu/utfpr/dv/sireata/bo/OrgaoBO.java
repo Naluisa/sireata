@@ -143,21 +143,15 @@ public class OrgaoBO {
 			throw new Exception("Selecione o secretário");
 		}
 		
-		boolean encontrou = false;
-		
 		for(OrgaoMembro u : orgao.getMembros()){
-			if(u.getUsuario().getIdUsuario() == orgao.getPresidente().getIdUsuario()){
-				encontrou = true;
-				break;
-			}
-		}
-		if(!encontrou){
+		
+		if(!(u.getUsuario().getIdUsuario() == orgao.getPresidente().getIdUsuario())){
 			OrgaoMembro membro = new OrgaoMembro();
 			membro.setUsuario(orgao.getPresidente());
 			membro.setDesignacao("coordenador");
 			orgao.getMembros().add(membro);
 		}
-		
+	}
 		try{
 			OrgaoDAO dao = new OrgaoDAO();
 			
