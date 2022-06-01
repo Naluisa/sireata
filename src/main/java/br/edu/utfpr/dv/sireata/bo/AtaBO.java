@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
-import br.edu.utfpr.dv.sireata.dao.AnexoDAO;
+import br.edu.utfpr.dv.sireata.factory.*;
 import br.edu.utfpr.dv.sireata.dao.AtaDAO;
 import br.edu.utfpr.dv.sireata.dao.AtaParticipanteDAO;
 import br.edu.utfpr.dv.sireata.dao.OrgaoDAO;
@@ -231,11 +231,10 @@ public class AtaBO {
 				int i = 1;
 				
 				for(Anexo a : ata.getAnexos()) {
-					AnexoDAO adao = new AnexoDAO();
 					
 					a.getAta().setIdAta(id);
 					a.setOrdem(i);
-					adao.salvar(a);
+					DAO.Anexo.getAnexoInstance().salvar(a);
 					i++;
 				}
 			}

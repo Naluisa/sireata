@@ -10,7 +10,7 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Anexo;
 
-public class AnexoDAO {
+public class AnexoDAO implements DaoFactory{
 	
 	public Anexo buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -60,7 +60,9 @@ public class AnexoDAO {
 		}
 	}
 	
-	public int salvar(Anexo anexo) throws SQLException{
+	@Override
+	public int salvar(Object obj) throws SQLException{
+		Anexo anexo = (Anexo) obj;
 		boolean insert = (anexo.getIdAnexo() == 0);
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -100,6 +102,7 @@ public class AnexoDAO {
 		}
 	}
 	
+	@Override
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
