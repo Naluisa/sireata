@@ -6,13 +6,17 @@ import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.AtaParticipanteDAO;
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
+import br.edu.utfpr.dv.sireata.factory.*;
 
 public class AtaParticipanteBO {
-	
-	public AtaParticipante buscarPorId(int id) throws Exception{
+	private AtaParticipanteFactory dao;
+
+	public AtaParticipanteBO(){
+		this.dao = DAO.AtaParticipante.getAtaParticipanteInstance();
+	}
+	public Object buscarPorId(int id) throws Exception{
+		
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
-			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -23,8 +27,6 @@ public class AtaParticipanteBO {
 	
 	public List<AtaParticipante> listarPorAta(int idAta) throws Exception{
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
-			
 			return dao.listarPorAta(idAta);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -69,8 +71,6 @@ public class AtaParticipanteBO {
 	
 	public void excluir(int id) throws Exception{
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
-			
 			dao.excluir(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);

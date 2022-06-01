@@ -8,7 +8,7 @@ import br.edu.utfpr.dv.sireata.factory.*;
 import br.edu.utfpr.dv.sireata.model.Anexo;
 
 public class AnexoBO {
-	private DaoFactory dao;
+	private AnexoFactory dao;
 
 	public AnexoBO() {
 		this.dao = DAO.Anexo.getAnexoInstance();
@@ -25,7 +25,7 @@ public class AnexoBO {
 
 	public List<Anexo> listarPorAta(int idAta) throws Exception {
 		try {
-			return (List<Anexo>)dao.listarPorAta(idAta);
+			return dao.listarPorAta(idAta);
 		} catch (Exception e) {
 			exception(e);
 			throw new Exception(e.getMessage());
