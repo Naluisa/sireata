@@ -19,6 +19,12 @@ public enum DAO {
         public AtaParticipanteDAO getAtaParticipanteInstance() {
           return new AtaParticipanteDAO();
         }
+    },
+
+    Orgao {
+        public OrgaoDAO getOrgaoInstance() {
+          return new OrgaoDAO();
+        }
     };
 
     public AnexoDAO getAnexoInstance() {
@@ -31,5 +37,9 @@ public enum DAO {
 
     public AtaParticipanteDAO getAtaParticipanteInstance() {
         return AtaParticipante.getAtaParticipanteInstance();
+      }
+
+      public OrgaoDAO getOrgaoInstance() {
+        return Orgao.getOrgaoInstance();
       }
 }

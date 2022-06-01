@@ -5,6 +5,4 @@ public interface DaoFactory {
 
     public Object buscarPorId(int id) throws Exception;
 
-    public Object listarPorAta(int idAta) throws Exception;
-
 }

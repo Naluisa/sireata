@@ -12,9 +12,8 @@ import java.util.List;
 import br.edu.utfpr.dv.sireata.model.Ata;
 import br.edu.utfpr.dv.sireata.model.Ata.TipoAta;
 import br.edu.utfpr.dv.sireata.util.DateUtils;
-import br.edu.utfpr.dv.sireata.factory.*;
 
-public class AtaDAO implements AtaFactory{
+public class AtaDAO {
 	
 	public Ata buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -44,7 +43,7 @@ public class AtaDAO implements AtaFactory{
 			closeConnection(rs,stmt,conn);
 		}
 	}
-	@Override
+	
 	public Ata buscarPorNumero(int idOrgao, TipoAta tipo, int numero, int ano) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -394,9 +393,8 @@ public class AtaDAO implements AtaFactory{
 			closeConnection(rs,stmt,conn);
 		}
 	}
-	@Override
-	public int salvar(Object obj) throws SQLException{
-		Ata ata = (Ata) obj;
+	
+	public int salvar(Ata ata) throws SQLException{
 		boolean insert = (ata.getIdAta() == 0);
 		Connection conn = null;
 		PreparedStatement stmt = null;

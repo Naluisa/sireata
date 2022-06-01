@@ -5,17 +5,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.OrgaoDAO;
+import br.edu.utfpr.dv.sireata.factory.*;
 import br.edu.utfpr.dv.sireata.model.Orgao;
 import br.edu.utfpr.dv.sireata.model.OrgaoMembro;
 import br.edu.utfpr.dv.sireata.model.Usuario;
 
 public class OrgaoBO {
-	
+	private OrgaoFactory dao;
+
+	public OrgaoBO() {
+		this.dao = DAO.Orgao.getOrgaoInstance();
+	}
+
 	public Orgao buscarPorId(int id) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
-			return dao.buscarPorId(id);
+			return (Orgao)dao.buscarPorId(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -25,8 +29,6 @@ public class OrgaoBO {
 	
 	public List<Orgao> listarTodos(boolean apenasAtivos) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.listarTodos(apenasAtivos);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -37,8 +39,6 @@ public class OrgaoBO {
 	
 	public List<Orgao> listarPorDepartamento(int idDepartamento) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.listarPorDepartamento(idDepartamento);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -49,8 +49,6 @@ public class OrgaoBO {
 	
 	public List<Orgao> listarPorCampus(int idCampus) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.listarPorCampus(idCampus);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -61,8 +59,6 @@ public class OrgaoBO {
 	
 	public List<Orgao> listarParaCriacaoAta(int idDepartamento, int idUsuario) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.listarParaCriacaoAta(idDepartamento, idUsuario);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -73,8 +69,6 @@ public class OrgaoBO {
 	
 	public List<Orgao> listarParaConsultaAtas(int idDepartamento, int idUsuario) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.listarParaConsultaAtas(idDepartamento, idUsuario);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -107,8 +101,6 @@ public class OrgaoBO {
 	
 	public Usuario buscarSecretario(int idOrgao) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.buscarSecretario(idOrgao);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -119,8 +111,6 @@ public class OrgaoBO {
 	
 	public boolean isMembro(int idOrgao, int idUsuario) throws Exception{
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.isMembro(idOrgao, idUsuario);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -153,8 +143,6 @@ public class OrgaoBO {
 		}
 	}
 		try{
-			OrgaoDAO dao = new OrgaoDAO();
-			
 			return dao.salvar(orgao);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);

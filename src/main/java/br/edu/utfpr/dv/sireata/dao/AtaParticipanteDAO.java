@@ -10,7 +10,7 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
-public class AtaParticipanteDAO implements AtaParticipanteFactory{
+public class AtaParticipanteDAO {
 	
 	public AtaParticipante buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -62,8 +62,7 @@ public class AtaParticipanteDAO implements AtaParticipanteFactory{
 		}
 	}
 	
-	public int salvar(Object obj) throws SQLException {
-		AtaParticipante participante = (AtaParticipante) obj;
+	public int salvar(AtaParticipante participante) throws SQLException{
 		boolean insert = (participante.getIdAtaParticipante() == 0);
 		Connection conn = null;
 		PreparedStatement stmt = null;
